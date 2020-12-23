@@ -1,0 +1,69 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <li data-time="2:14">
+        Video 1
+    </li>
+    <li data-time="3:44">
+        Video 2
+    </li>
+    <li data-time="5:05">
+        Video 3
+    </li>
+    <li data-time="6:03">
+        Video 4
+    </li>
+    <li data-time="12:39">
+        Video 5
+    </li>
+    <li data-time="1:56">
+        Video 6
+    </li>
+    <li data-time="4:04">
+        Video 7
+    </li>
+
+    <script>
+        const timeNodes = [...document.querySelectorAll('[data-time]')];
+        console.log(timeNodes);
+        const seconds = timeNodes
+            .map(node => node.dataset.time)
+            .map(timeCode => {
+                const [mins, secs] = timeCode.split(':').map(parseFloat);
+                return (mins * 60) + secs;
+            })
+            .reduce((total, vidSeconds) => total + vidSeconds);
+        console.log(seconds);
+
+        //   let secondsLeft = seconds;
+        //   const hours = Math.floor(secondsLeft/3600);
+        //   secondsLeft = secondsLeft - (hours * 3600);
+        //   const minutes = Math.floor(secondsLeft / 60);
+        //   secondsLeft = secondsLeft - (minutes * 60);
+        //   const secondss = secondsLeft;
+
+        let secondsLeft = seconds;
+        const hours = Math.floor(secondsLeft / 3600);
+        secondsLeft = secondsLeft % 3600;
+        const mins = Math.floor(secondsLeft / 60);
+        secondsLeft = secondsLeft % 60;
+
+        console.log(hours, mins, secondsLeft);
+
+        //can be done in one reduce
+
+    </script>
+
+
+
+
+</body>
+
+</html>

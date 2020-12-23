@@ -1,0 +1,157 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="site-wrap">
+        <h1>Slide in on Scroll</h1>
+
+        <p>Based on qualitative and quantitative results the efficacy of the intercultural approach for promoting
+            perception change, transformation and relationship building was affirmed...</p>
+
+        <p>The results indicate that the work of the IEA has important implications for maintaining “peace willingness”,
+            which is not to be taken for granted nowadays...</p>
+
+        <p>It proves that the inter-religious encounter made participants more open to the “religious other” while often
+            making the particular identity of the participants stronger and more positive..</p>
+
+        <p>The results show that for the participants, stereotypes have been broken and enemies have been re-humanized
+            and are now perceived as people who also face the difficulties of the conflict...</p>
+
+        <p>Based on qualitative and quantitative results the efficacy of the intercultural approach for promoting
+            perception change, transformation and relationship building was affirmed...</p>
+        <img class="align-left slide-in" src="https://source.unsplash.com/gYl-UtwNg_I/200x200">
+
+        <p>The results indicate that the work of the IEA has important implications for maintaining “peace willingness”,
+            which is not to be taken for granted nowadays...</p>
+
+        <p>It proves that the inter-religious encounter made participants more open to the “religious other” while often
+            making the particular identity of the participants stronger and more positive..</p>
+
+        <p>The results show that for the participants, stereotypes have been broken and enemies have been re-humanized
+            and are now perceived as people who also face the difficulties of the conflict...</p>
+
+        <p>Based on qualitative and quantitative results the efficacy of the intercultural approach for promoting
+            perception change, transformation and relationship building was affirmed...</p>
+
+        <p>The results indicate that the work of the IEA has important implications for maintaining “peace willingness”,
+            which is not to be taken for granted nowadays...</p>
+            <img class="align-right slide-in" src="https://source.unsplash.com/gYl-UtwNg_I/200x200">
+
+        <p>It proves that the inter-religious encounter made participants more open to the “religious other” while often
+            making the particular identity of the participants stronger and more positive..</p>
+
+        <p>The results show that for the participants, stereotypes have been broken and enemies have been re-humanized
+            and are now perceived as people who also face the difficulties of the conflict...</p>
+
+
+
+
+    </div>
+
+    <script>
+        function debounce(func, wait = 20, immediate = true) {
+            var timeout;
+            return function () {
+                var context = this, args = arguments;
+                var later = function () {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                };
+                var callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+                if (callNow) func.apply(context, args);
+            };
+        };
+
+        const sliderImages = document.querySelectorAll('.slide-in');
+
+        function checkSlide(e) {
+            sliderImages.forEach(sliderImage => {
+                //half way through the image
+                const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height / 2;
+                //bottom of the image
+                const imageBottom = sliderImage.offsetTop + sliderImage.height;
+                const isHalfShown = slideInAt > sliderImage.offsetTop;
+                const isNotScrolledPast = window.screenY < imageBottom;
+                if(isHalfShown && isNotScrolledPast){
+                    sliderImage.classList.add('active');
+                } else {
+                    sliderImage.classList.remove('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', debounce(checkSlide));
+
+
+    </script>
+
+    <style>
+        html {
+            box-sizing: border-box;
+            background: #ffc600;
+            font-family: 'helvetica neue';
+            font-size: 20px;
+            font-weight: 200;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .site-wrap {
+            max-width: 700px;
+            margin: 100px auto;
+            background: white;
+            padding: 40px;
+            text-align: justify;
+        }
+
+        .align-left {
+            float: left;
+            margin-right: 20px;
+        }
+
+        .align-right {
+            float: right;
+            margin-left: 20px;
+        }
+
+        .slide-in {
+            opacity: 0;
+            transition: all .5s;
+        }
+
+        .align-left.slide-in {
+            transform: translateX(-30%) scale(0.95);
+        }
+
+        .align-right.slide-in {
+            transform: translateX(30%) scale(0.95);
+        }
+
+        .slide-in.active {
+            opacity: 1;
+            transform: translateX(0%) scale(1);
+        }
+    </style>
+
+</body>
+
+</html>
